@@ -1,6 +1,6 @@
 import { db } from "../utils/db.server";
 
-type Author = {
+export type Author = {
   id: number;
   firstName: string;
   lastName: string;
@@ -19,7 +19,7 @@ export const listAuthors = async (): Promise<Author[]> => {
 export const getAuthor = async (id: number): Promise<Author | null> => {
   return db.author.findUnique({
     where: {
-      id: id,
+      id: id, //posso usar somente id invés de id: id
     },
     // select: {
     //   id: true,
@@ -48,7 +48,7 @@ export const updateAuthor = async (author: Omit<Author, "id">, id: number): Prom
   const { firstName, lastName } = author;
   return db.author.update({
     where: {
-      id: id,
+      id: id, //posso usar somente id invés de id: id
     },
     data: {
       firstName,
@@ -65,7 +65,7 @@ export const updateAuthor = async (author: Omit<Author, "id">, id: number): Prom
 export const deleteAuthor = async (id: number): Promise<void> => {
   await db.author.delete({
     where: {
-      id: id
+      id: id //posso usar somente id invés de id: id
     },
   });
 };
